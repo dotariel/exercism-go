@@ -31,7 +31,6 @@ func Song() string {
 
 	for i := 1; i <= len(parts); i++ {
 		verses += Verse(i)
-
 		if i < len(parts) {
 			verses += "\n\n"
 		}
@@ -51,9 +50,7 @@ func buildVerse(n int, s *string) string {
 	}
 
 	part := parts[len(parts)-n]
-
 	*s += part.Noun
-
 	if part.Verb != "" {
 		*s += fmt.Sprintf("\nthat %v ", part.Verb)
 	}
