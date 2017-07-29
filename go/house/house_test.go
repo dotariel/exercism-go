@@ -152,3 +152,9 @@ func TestSong(t *testing.T) {
 	}
 	t.Fatalf("Song() line %d =\n%q\n want \n%q", i+1, g, w)
 }
+
+func BenchmarkSong(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Song()
+	}
+}

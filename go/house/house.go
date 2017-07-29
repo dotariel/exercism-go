@@ -6,6 +6,8 @@ import (
 
 const testVersion = 1
 
+// VersePart encapsulates the components that a Verse is
+// built with.
 type VersePart struct {
 	Verb string
 	Noun string
@@ -26,6 +28,8 @@ var parts []VersePart = []VersePart{
 	VersePart{Noun: "the house that Jack built"},
 }
 
+// Song returns all the verses concatenated with double
+// line breaks.
 func Song() string {
 	var verses string
 
@@ -39,11 +43,14 @@ func Song() string {
 	return verses
 }
 
+// Verse returns a single verse as a string.
 func Verse(n int) string {
 	s := ""
 	return buildVerse(n, &s)
 }
 
+// buildVerse recursively compiles the individual verse parts and
+// returns the final result as a string.
 func buildVerse(n int, s *string) string {
 	if n == 0 {
 		return fmt.Sprintf("This is %v.", *s)

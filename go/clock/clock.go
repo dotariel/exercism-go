@@ -20,7 +20,6 @@ func (c Clock) String() string {
 }
 
 func (c Clock) Add(minutes int) Clock {
-
 	for i := 0; i < int(math.Abs(float64(minutes))); i++ {
 		if minutes > 0 {
 			c.Minute++
