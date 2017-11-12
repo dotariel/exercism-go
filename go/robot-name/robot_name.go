@@ -45,14 +45,21 @@ func exists(r string) (bool, int) {
 	return false, -1
 }
 
-func makename() string {
-	name := ""
-	for i := 0; i < 2; i++ {
-		name += string(rune(rand.Intn(25) + 65)) // Uppsercase 65-90
-	}
-	for i := 0; i < 3; i++ {
-		name += string(rune(rand.Intn(9) + 49)) // Digits 49-58
-	}
+const (
+	charOffset  = 65
+	charLength  = 26
+	digitOffset = 49
+	digitLength = 10
+)
 
+func makename() string {
+	return gen(2, (charLength-1), charOffset) + gen(3, (digitLength-1), digitOffset)
+}
+
+func gen(count, len, offset int) string {
+	var name string
+	for i := 0; i < count; i++ {
+		name += string(rune(rand.Intn(len) + offset))
+	}
 	return name
 }
