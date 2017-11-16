@@ -37,29 +37,25 @@ func Classify(n int64) (Classification, error) {
 	return 0, nil
 }
 
-func factors(n int64) (factors []int64) {
-	fs := make(map[int64]bool)
+func aliquot(n int64) (sum int64) {
+	if n == 1 {
+		return 0
+	}
 
 	for i := int64(1); i <= int64(math.Sqrt(float64(n))); i++ {
 		if n%i == 0 {
-			r := n / i
-			fs[r] = true
-			fs[i] = true
+			div := n / i
+
+			if div != n {
+				sum += div
+				if i != div {
+					sum += i
+				}
+			} else {
+				sum += i
+			}
 		}
-	}
 
-	for k := range fs {
-		factors = append(factors, k)
-	}
-
-	return
-}
-
-func aliquot(n int64) (sum int64) {
-	for _, f := range factors(n) {
-		if f != n {
-			sum += f
-		}
 	}
 	return
 }

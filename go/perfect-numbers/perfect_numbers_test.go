@@ -59,3 +59,27 @@ func BenchmarkClassify(b *testing.B) {
 		}
 	}
 }
+
+func TestAliquot(t *testing.T) {
+	cases := []struct {
+		input    int64
+		expected int64
+	}{
+		{1, 0},   // 1
+		{2, 1},   // 1
+		{3, 1},   // 1
+		{4, 3},   // 1+2
+		{12, 16}, // 1+2+3+4+6
+		{15, 9},  // 1+3+5
+		{18, 21}, // 1+2+3+6+9
+		{24, 36}, // 1+2+3+4+6+8+12
+		{28, 28}, // 1+2+4+7+14
+	}
+
+	for _, tt := range cases {
+		actual := aliquot(tt.input)
+		if actual != tt.expected {
+			t.Errorf("failed for input '%v'; expected %v but got %v", tt.input, tt.expected, actual)
+		}
+	}
+}
