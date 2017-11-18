@@ -18,7 +18,7 @@ func Open(initialDeposit int64) *Account {
 	return &Account{balance: initialDeposit, open: true}
 }
 
-func (a *Account) Close() (payout int64, ok bool) {
+func (a *Account) Close() (int64, bool) {
 	a.Lock()
 	defer a.Unlock()
 
@@ -26,14 +26,14 @@ func (a *Account) Close() (payout int64, ok bool) {
 		return a.balance, false
 	}
 
-	payout = a.balance
+	payout := a.balance
 	a.balance = 0
 	a.open = false
 
 	return payout, true
 }
 
-func (a *Account) Balance() (balance int64, ok bool) {
+func (a *Account) Balance() (int64, bool) {
 	a.Lock()
 	defer a.Unlock()
 
