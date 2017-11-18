@@ -19,7 +19,7 @@ func (s byRunes) Len() int {
 	return len(s)
 }
 
-func sortString(s string) string {
+func sorted(s string) string {
 	runes := []rune(s)
 	sort.Sort(byRunes(runes))
 	return string(runes)
@@ -45,5 +45,5 @@ func IsAnagram(a, b string) bool {
 		return false
 	}
 
-	return sortString(this) == sortString(that)
+	return sorted(this) == sorted(that)
 }
