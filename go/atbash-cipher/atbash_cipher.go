@@ -18,7 +18,7 @@ func mapf(r rune) rune {
 		return r
 	}
 
-	cidx := (26 - strings.IndexRune(key, r)) - 1
+	cidx := (len(key) - strings.IndexRune(key, r)) - 1
 
 	return rune(key[cidx])
 }
