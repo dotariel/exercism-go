@@ -38,6 +38,11 @@ func Detect(subject string, candidates []string) []string {
 }
 
 func IsAnagram(a, b string) bool {
+
+	if len(a) != len(b) {
+		return false
+	}
+
 	this := strings.ToLower(a)
 	that := strings.ToLower(b)
 
