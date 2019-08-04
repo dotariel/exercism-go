@@ -14,7 +14,6 @@
 package matrix
 
 import (
-	"fmt"
 	"reflect"
 	"testing"
 )
@@ -141,12 +140,6 @@ var tests = []struct {
 	// {"",     // valid?, 0 rows, 0 columns
 }
 
-func TestIt(t *testing.T) {
-	m, _ := New("1 2\n10 20")
-
-	fmt.Printf("%v", m.Rows())
-}
-
 func TestNew(t *testing.T) {
 	for _, test := range tests {
 		m, err := New(test.in)
@@ -181,7 +174,7 @@ func TestRows(t *testing.T) {
 			continue // agreement, and nothing more to test
 		}
 		if !reflect.DeepEqual(r, test.rows) {
-			t.Fatalf("New(%q).Rows() = %v, want %v", test.in, r, test.rows)
+			t.Fatalf("New(%q).Rows() = %v (type %T), want %v (type %T)", test.in, r, r, test.rows, test.rows)
 		}
 		if len(r[0]) == 0 {
 			continue // not currently in test data, but anyway
@@ -208,7 +201,7 @@ func TestCols(t *testing.T) {
 			continue // agreement, and nothing more to test
 		}
 		if !reflect.DeepEqual(c, test.cols) {
-			t.Fatalf("New(%q).Cols() = %v, want %v", test.in, c, test.cols)
+			t.Fatalf("New(%q).Cols() = %v (type %T), want %v (type %T)", test.in, c, c, test.cols, test.cols)
 		}
 		if len(c[0]) == 0 {
 			continue // not currently in test data, but anyway
