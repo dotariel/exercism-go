@@ -6,10 +6,12 @@ import (
 	"strings"
 )
 
+// Matrix is the data structure that holds the underlying matrix data
 type Matrix struct {
 	data [][]int
 }
 
+// New returns a new instance of a Matrix
 func New(in string) (*Matrix, error) {
 	matrix := &Matrix{}
 
@@ -41,6 +43,7 @@ func New(in string) (*Matrix, error) {
 	return matrix, nil
 }
 
+// Rows returns a slice of values that represent the rows in the matrix
 func (m *Matrix) Rows() [][]int {
 	ret := make([][]int, 0)
 	for _, row := range m.data {
@@ -51,6 +54,7 @@ func (m *Matrix) Rows() [][]int {
 	return ret
 }
 
+// Cols returns a slice of values that represent the columns in the matrix
 func (m *Matrix) Cols() (ret [][]int) {
 	if len(m.data) == 0 {
 		return
